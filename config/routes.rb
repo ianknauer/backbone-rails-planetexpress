@@ -1,4 +1,5 @@
 Episode07::Application.routes.draw do
+	match "static" => "application#static"
   root :to => 'application#index'
 
   # The priority is based upon order of creation:

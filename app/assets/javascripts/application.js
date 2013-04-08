@@ -10,4 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
+//= require lib/underscore
+//= require lib/backbone
+//= require lib/marionette
+//= require js-routes
+//= require_tree ./backbone/config
+//= require backbone/app
+//= require_tree ./backbone/views
+//= require_tree ./backbone/entities
+//= require_tree ./backbone/apps

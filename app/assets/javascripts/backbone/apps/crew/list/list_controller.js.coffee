@@ -3,9 +3,43 @@
 	List.Controller =
 		
 		list: ->
-			listView = @getListView()
+			@layout = @getLayoutView()
 			
-			App.mainRegion.show listView
+			@layout.on "show", =>
+				@titleRegion()
+				@panelRegion()
+				@newRegion()
+				@crewRegion()
+			
+			App.mainRegion.show @layout
 		
-		getListView: ->
+		titleRegion: ->
+			titleView = @getTitleView()
+			@layout.titleRegion.show titleView
+		
+		panelRegion: ->
+			panelView = @getPanelView()
+			@layout.panelRegion.show panelView
+		
+		newRegion: ->
+			newView = @getNewView()
+			@layout.newRegion.show newView
+		
+		crewRegion: ->
+			crewView = @getCrewView()
+			@layout.crewRegion.show crewView
+		
+		getCrewView: ->
 			new List.Crew
+		
+		getNewView: ->
+			new List.New
+		
+		getPanelView: ->
+			new List.Panel
+		
+		getTitleView: ->
+			new List.Title
+		
+		getLayoutView: ->
+			new List.Layout

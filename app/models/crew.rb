@@ -1,3 +1,3 @@
 class Crew < ActiveRecord::Base
-  attr_accessible :age, :name, :origin, :quote, :species, :title
+  attr_accessible :age, :avatar, :name, :origin, :quote, :species, :title
 end

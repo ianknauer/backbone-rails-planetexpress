@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409053340) do
+ActiveRecord::Schema.define(:version => 20130409063817) do
 
   create_table "crews", :force => true do |t|
     t.integer  "age"
     t.string   "name"
+    t.string   "avatar"
     t.string   "title"
     t.string   "species"
     t.string   "origin"

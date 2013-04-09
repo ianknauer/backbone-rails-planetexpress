@@ -3,6 +3,7 @@ class CreateCrews < ActiveRecord::Migration
     create_table :crews do |t|
       t.integer :age
       t.string :name
+      t.string :avatar
       t.string :title
       t.string :species
       t.string :origin

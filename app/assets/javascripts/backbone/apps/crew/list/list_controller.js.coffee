@@ -24,7 +24,7 @@
 			@layout.panelRegion.show panelView
 		
 		newRegion: ->
-			newView = @getNewView()
+			newView = App.request "new:crew:member:view"
 			@layout.newRegion.show newView
 		
 		crewRegion: (crew) ->
@@ -34,9 +34,6 @@
 		getCrewView: (crew) ->
 			new List.Crew
 				collection: crew
-		
-		getNewView: ->
-			new List.New
 		
 		getPanelView: ->
 			new List.Panel

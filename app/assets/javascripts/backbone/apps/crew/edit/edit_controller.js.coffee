@@ -7,9 +7,10 @@
 			
 			# crew.on "all", (e) -> console.info e
 			
-			editView = @getEditView crew
+			App.execute "when:fetched", crew, =>
+				editView = @getEditView crew
 			
-			App.mainRegion.show editView
+				App.mainRegion.show editView
 		
 		getEditView: (crew) ->
 			new Edit.Crew

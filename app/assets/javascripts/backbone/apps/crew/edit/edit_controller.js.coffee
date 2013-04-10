@@ -2,7 +2,11 @@
 	
 	Edit.Controller =
 		
-		edit: (crew) ->
+		edit: (id, crew) ->
+			crew or= App.request "crew:entity", id
+			
+			# crew.on "all", (e) -> console.info e
+			
 			editView = @getEditView crew
 			
 			App.mainRegion.show editView

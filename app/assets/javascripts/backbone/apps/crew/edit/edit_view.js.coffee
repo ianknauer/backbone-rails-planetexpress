@@ -1,7 +1,10 @@
 @PlanetExpress.module "CrewApp.Edit", (Edit, App, Backbone, Marionette, $, _) ->
 	
-	class Edit.Crew extends App.Views.ItemView
-		template: "crew/edit/edit_crew"
+	class Edit.Layout extends App.Views.Layout
+		template: "crew/edit/edit_layout"
 		
-		modelEvents:
-			"sync" : "render"
+		regions:
+			formRegion: "#form-region"
+	
+	class Edit.Crew extends App.Views.ItemView
+		template: "crew/edit/_edit_crew"

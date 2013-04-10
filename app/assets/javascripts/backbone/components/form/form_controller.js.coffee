@@ -21,22 +21,20 @@
 		
 		getFormLayout: (options) ->
 			config = @getDefaultOptions _.result(@formView, "form") 
+			
+			buttons = @getButtons config.buttons
+			
 			new Form.View
 				config: config
+				buttons: buttons
 		
 		getDefaultOptions: (config = {}) ->
-			console.log config
-			
 			_.defaults config,
 				focusFirstInput: true
 				footer: true
-				buttons: @getButtonDefaults config.buttons
 		
-		getButtonDefaults: (buttons = {}) ->
-			_.defaults buttons,
-				primary: "Save"
-				cancel: "Cancel"
-				placement: "right"
+		getButtons: (buttons = {}) ->
+			App.request("form:button:entities", buttons, @formView.model) unless buttons is false	
 					
 	# API =
 	# 	getFormWrapper: (view, options) ->

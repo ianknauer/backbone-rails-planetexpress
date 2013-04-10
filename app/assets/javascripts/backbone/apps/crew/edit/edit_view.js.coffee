@@ -9,8 +9,12 @@
 	class Edit.Crew extends App.Views.ItemView
 		template: "crew/edit/_edit_crew"
 		
+		# onFormSubmit: (data) ->
+		# 	false
+		
 		# form:
-		# 	buttons:
-		# 		primary: "foo"
-		# 		cancel: false
-		# 		placement: "left"
+			# captureSubmitEvent: false
+			# buttons:
+			# 	primary: "foo"
+			# 	cancel: false
+			# 	placement: "left"

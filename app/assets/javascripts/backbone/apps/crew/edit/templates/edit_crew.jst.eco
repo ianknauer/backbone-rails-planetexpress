@@ -96,7 +96,7 @@
 											<input type="text" name="origin" value="<%= @origin %>"  />
 										</div>
 										<div class="large-7 columns">
-											<h6 class="subheader hint">Where they were born</h6>
+											<h6 class="subheader hint">Planet they were born on</h6>
 										</div>
 							        </div>
 								</div>

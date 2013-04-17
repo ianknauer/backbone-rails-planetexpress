@@ -15,4 +15,8 @@ class CrewController < ApplicationController
 		render "crew/show"
 		# render "crew/show", :status => 422
 	end
+	
+	def create
+		sleep 5
+	end
 end

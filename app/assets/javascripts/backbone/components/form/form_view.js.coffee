@@ -10,6 +10,10 @@
 		triggers:
 			"submit" 														: "form:submit"
 			"click [data-form-button='cancel']" : "form:cancel"
+		
+		modelEvents:
+			"sync:start" 	: "syncStart"
+			"sync:stop" 	: "syncStop"
 			
 		regions:
 			formContentRegion: "#form-content-region"
@@ -37,3 +41,11 @@
 		
 		buttonPlacement: ->
 			@ui.buttonContainer.addClass @buttons.placement
+		
+		syncStart: (model) ->
+			if @config.syncing
+				@addOpacityWrapper()
+		
+		syncStop: (model) ->
+			if @config.syncing
+				@addOpacityWrapper(false)

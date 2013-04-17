@@ -13,11 +13,11 @@
 			# console.log data
 			# false
 		
-		form:
+		# form:
 			# captureSubmitEvent: false
 			# addToCollection: false
 			# managePrimaryButton: false
-			buttons:
+			# buttons:
 				# primary: "foo"
 				# cancel: ""
-				placement: "left"
+				# placement: "left"

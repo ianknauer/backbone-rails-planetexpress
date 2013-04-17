@@ -12,6 +12,7 @@ class CrewController < ApplicationController
 	end
 	
 	def update
+		sleep 2
 		render "crew/show"
 		# render "crew/show", :status => 422
 	end

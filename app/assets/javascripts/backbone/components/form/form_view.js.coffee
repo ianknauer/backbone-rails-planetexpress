@@ -43,9 +43,7 @@
 			@ui.buttonContainer.addClass @buttons.placement
 		
 		syncStart: (model) ->
-			if @config.syncing
-				@addOpacityWrapper()
+			@addOpacityWrapper() if @config.syncing
 		
 		syncStop: (model) ->
-			if @config.syncing
-				@addOpacityWrapper(false)
+			@addOpacityWrapper(false) if @config.syncing

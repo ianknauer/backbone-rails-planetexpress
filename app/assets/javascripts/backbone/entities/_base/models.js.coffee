@@ -2,6 +2,13 @@
 	
 	class Entities.Model extends Backbone.Model
 		
+		destroy: (options = {}) ->
+			_.defaults options,
+				wait: true
+				
+			@set _destroy: true
+			super options
+		
 		save: (data, options = {}) ->
 			isNew = @isNew()
 
@@ -26,3 +33,6 @@
 
 		saveError: (model, xhr, options) =>
 			@set _errors: $.parseJSON(xhr.responseText)?.errors  unless xhr.status is 500 or xhr.status is 404 ## set errors directly on the model unless status returned was 500 or 404
+		
+		isDestroyed: ->
+			@get "_destroy"

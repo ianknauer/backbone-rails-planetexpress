@@ -30,4 +30,11 @@ class CrewController < ApplicationController
 			respond_with @member
 		end
 	end
+	
+	def destroy
+		sleep 1
+		member = Crew.find(params[:id])
+		member.destroy()
+		render json: {}
+	end
 end

@@ -22,6 +22,9 @@
 		template: "crew/list/_crew_member"
 		tagName: "li"
 		className: "crew-member"
+			
+		triggers:
+			"click .crew-delete button" : "crew:member:delete:clicked"
 		
 		events:
 			"click" : -> @trigger "crew:member:clicked", @model

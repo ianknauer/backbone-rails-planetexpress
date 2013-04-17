@@ -12,12 +12,22 @@ class CrewController < ApplicationController
 	end
 	
 	def update
-		sleep 2
-		render "crew/show"
-		# render "crew/show", :status => 422
+		sleep 1
+		@member = Crew.find(params[:id])
+		if @member.update_attributes(params)
+			render "crew/show"
+		else
+			respond_with @member
+		end
 	end
 	
 	def create
-		sleep 5
+		sleep 1
+		@member = Crew.new
+		if @member.update_attributes(params)
+			render "crew/show"
+		else
+			respond_with @member
+		end
 	end
 end

@@ -12,9 +12,9 @@
 			"click [data-form-button='cancel']" : "form:cancel"
 		
 		modelEvents:
-			"sync:start" 		: "syncStart"
-			"sync:stop" 		: "syncStop"
-			"change:errors"	: "changeErrors"
+			"sync:start" 			: "syncStart"
+			"sync:stop" 			: "syncStop"
+			"change:_errors"	: "changeErrors"
 			
 		regions:
 			formContentRegion: "#form-content-region"

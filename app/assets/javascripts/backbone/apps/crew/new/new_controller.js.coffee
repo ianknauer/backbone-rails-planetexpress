@@ -7,6 +7,9 @@
 			
 			crew.on "all", (e) -> console.info e
 			
+			crew.on "created", ->
+				App.vent.trigger "crew:created", crew
+			
 			newView = @getNewView crew
 			
 			App.request "form:wrapper", newView

@@ -12,8 +12,9 @@
 			"click [data-form-button='cancel']" : "form:cancel"
 		
 		modelEvents:
-			"sync:start" 	: "syncStart"
-			"sync:stop" 	: "syncStop"
+			"sync:start" 		: "syncStart"
+			"sync:stop" 		: "syncStop"
+			"change:errors"	: "changeErrors"
 			
 		regions:
 			formContentRegion: "#form-content-region"
@@ -47,3 +48,19 @@
 		
 		syncStop: (model) ->
 			@addOpacityWrapper(false) if @config.syncing
+		
+		changeErrors: (model, errors, options) ->
+			if @config.errors
+				if _.isEmpty(errors) then @removeErrors() else @addErrors(errors)
+		
+		removeErrors: =>
+			@$(".error").removeClass("error").find("small").remove()
+		
+		addErrors: (errors = {}) ->
+			for name, array of errors
+				@addError name, array[0]
+		
+		addError: (name, error) =>
+			el = @$("[name='#{name}']")
+			sm = $("<small>").text(error)
+			el.after(sm).closest(".row").addClass("error")

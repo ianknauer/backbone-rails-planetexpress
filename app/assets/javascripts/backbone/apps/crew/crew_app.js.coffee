@@ -7,16 +7,17 @@
 	
 	API =
 		list: ->
-			CrewApp.List.Controller.list()
+			new CrewApp.List.Controller
 		
-		newCrew: ->
-			CrewApp.New.Controller.newCrew()
+		newCrew: (region) ->
+			new CrewApp.New.Controller
+				region: region
 		
 		edit: (id, member) ->
-			CrewApp.Edit.Controller.edit id, member
+			new CrewApp.Edit.Controller id, member
 	
-	App.reqres.setHandler "new:crew:member:view", ->
-		API.newCrew()
+	App.commands.setHandler "new:crew:member", (region) ->
+		API.newCrew region
 	
 	App.vent.on "crew:created crew:member:clicked", (member) ->
 		App.navigate Routes.edit_crew_path(member.id)

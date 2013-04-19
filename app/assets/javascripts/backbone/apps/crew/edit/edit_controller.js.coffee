@@ -1,27 +1,27 @@
 @PlanetExpress.module "CrewApp.Edit", (Edit, App, Backbone, Marionette, $, _) ->
 	
-	Edit.Controller =
+	class Edit.Controller extends App.Controllers.Base
 		
-		edit: (id, crew) ->
+		initialize: (id, crew) ->
 			crew or= App.request "crew:entity", id
 			
-			crew.on "all", (e) -> console.info e
+			@listenTo crew, "all", (e) -> console.info e
 			
-			crew.on "updated", ->
+			@listenTo crew, "updated", ->
 				App.vent.trigger "crew:updated", crew
 			
 			App.execute "when:fetched", crew, =>
 				@layout = @getLayout crew
 				
-				@layout.on "show", =>
+				@listenTo @layout, "show", =>
 					@formRegion crew
 				
-				App.mainRegion.show @layout
+				@show @layout
 		
 		formRegion: (crew) ->
 			editView = @getEditView crew
 			
-			editView.on "form:cancel", ->
+			@listenTo editView, "form:cancel", ->
 				App.vent.trigger "crew:cancelled", crew
 			
 			formView = App.request "form:wrapper", editView

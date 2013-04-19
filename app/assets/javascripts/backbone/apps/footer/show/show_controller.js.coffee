@@ -1,10 +1,13 @@
 @PlanetExpress.module "FooterApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 	
-	Show.Controller =
+	class Show.Controller extends App.Controllers.Base
 		
-		show: ->
+		initialize: ->
 			showView = @getShowView()
-			App.footerRegion.show showView
+			
+			@listenTo showView, "close", @close
+			
+			@show showView
 		
 		getShowView: ->
 			new Show.Footer

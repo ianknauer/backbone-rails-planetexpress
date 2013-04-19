@@ -1,21 +1,21 @@
 @PlanetExpress.module "CrewApp.List", (List, App, Backbone, Marionette, $, _) ->
 	
-	List.Controller =
+	class List.Controller extends App.Controllers.Base
 		
-		list: ->
+		initialize: (options) ->
 			crew = App.request "crew:entities"
 			
 			App.execute "when:fetched", crew, =>
 			
-				@layout = @getLayoutView()
-			
-				@layout.on "show", =>
+				@layout = @getLayoutView crew
+				
+				@listenTo @layout, "show", =>
 					@titleRegion()
 					@panelRegion()
 					@crewRegion crew
-			
-				App.mainRegion.show @layout
-		
+				
+				@show @layout
+	
 		titleRegion: ->
 			titleView = @getTitleView()
 			@layout.titleRegion.show titleView
@@ -23,28 +23,42 @@
 		panelRegion: ->
 			panelView = @getPanelView()
 			
-			panelView.on "new:crew:button:clicked", =>
+			@listenTo panelView, "new:crew:button:clicked", =>
 				@newRegion()
 			
 			@layout.panelRegion.show panelView
 		
-		newRegion: ->
-			region = @layout.newRegion
-			newView = App.request "new:crew:member:view"
+		newRegion: ->			
+			App.execute "new:crew:member", @layout.newRegion			
 			
-			newView.on "form:cancel", ->
-				console.log "form:cancel"
-				region.close()
-			
-			region.show newView
+			# addCrew = new App.Crew.AddCrew 
+			#   region: @layout.newRegion
+			# 
+			# this.listenTo addCrew, "crew:added" ->
+			# 	# do stuff
+			# 	
+			# addCrew.show()
+			# 	
+			# # App.Cr "crew:add", @layout.newRegion
+			# 
+			# region = @layout.newRegion
+			# newView = App.request "new:crew:member:view"
+			# 
+			# @listenTo newView, "form:cancel", ->
+			# 	region.close()
+			# 	
+			# 
+			# 
+			# # App.execute "region:show", newView, region
+			# region.show newView
 		
 		crewRegion: (crew) ->
 			crewView = @getCrewView crew
 			
-			crewView.on "childview:crew:member:clicked", (child, member) ->
-				App.vent.trigger "crew:member:clicked", member
+			@listenTo crewView, "childview:crew:member:clicked", (child, args) ->
+				App.vent.trigger "crew:member:clicked", args.model
 			
-			crewView.on "childview:crew:member:delete:clicked", (child, args) ->
+			@listenTo crewView, "childview:crew:member:delete:clicked", (child, args) ->
 				model = args.model
 				if confirm "Are you sure you want to delete #{model.get("name")}?" then model.destroy() else false
 			

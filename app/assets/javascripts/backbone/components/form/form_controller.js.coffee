@@ -1,14 +1,13 @@
 @PlanetExpress.module "Components.Form", (Form, App, Backbone, Marionette, $, _) ->
 	
-	class Form.Controller extends Marionette.Controller
+	class Form.Controller extends App.Controllers.Base
 		
-		initialize: (contentView, options = {}) ->
-			@contentView = contentView
+		initialize: (options = {}) ->
+			@contentView = options.view
 			
-			@formLayout = @getFormLayout options
+			@formLayout = @getFormLayout options.config
 			
-			@listenTo @formLayout, "show", @formContentRegion			
-			@listenTo @formLayout, "close", @close
+			@listenTo @formLayout, "show", @formContentRegion
 			@listenTo @formLayout, "form:submit", @formSubmit
 			@listenTo @formLayout, "form:cancel", @formCancel
 		
@@ -25,7 +24,7 @@
 				@processFormSubmit data, entities
 		
 		formCancel: ->
-			console.log "formCancel"
+			# console.log "formCancel"
 			@contentView.triggerMethod("form:cancel")			
 		
 		processFormSubmit: (data, entities) ->
@@ -41,14 +40,15 @@
 			console.log "onClose", @
 		
 		formContentRegion: ->
-			@formLayout.formContentRegion.show @contentView
+			@region = @formLayout.formContentRegion
+			@show @contentView
 		
 		getFormLayout: (options) ->
 			config = @getDefaultOptions _.result(@contentView, "form") 
 			
 			buttons = @getButtons config.buttons
 			
-			new Form.View
+			new Form.FormWrapper
 				config: config
 				buttons: buttons
 				model: @contentView.model
@@ -65,5 +65,7 @@
 	
 	App.reqres.setHandler "form:wrapper", (contentView, options = {}) ->
 		throw new Error "no model found inside of form's contentView", contentView unless contentView.model
-		formController = new Form.Controller(contentView, options)
+		formController = new Form.Controller
+			view: contentView
+			config: options
 		formController.formLayout

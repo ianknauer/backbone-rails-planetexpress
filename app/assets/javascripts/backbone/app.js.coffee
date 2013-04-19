@@ -13,6 +13,16 @@
 		App.module("HeaderApp").start()
 		App.module("FooterApp").start()
 	
+	App.reqres.setHandler "default:region", ->
+		App.mainRegion
+	
+	App.commands.setHandler "register:instance", (instance, id) ->
+		# if App.environment is "development"
+		App.register instance, id
+	
+	App.commands.setHandler "unregister:instance", (instance, id) ->
+		App.unregister instance, id
+	
 	App.on "initialize:after", ->
 		@startHistory()
 		@navigate(@rootRoute, trigger: true) unless @getCurrentRoute()

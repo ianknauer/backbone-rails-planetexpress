@@ -3,6 +3,7 @@
 	class Controllers.Base extends Marionette.Controller
 		
 		constructor: (options = {}) ->
+			console.warn options
 			@region = options.region or App.request "default:region"
 			super options
 			@_instance_id = _.uniqueId("controller")

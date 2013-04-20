@@ -3,6 +3,7 @@
 	class New.Controller extends App.Controllers.Base
 		
 		initialize: ->
+			console.log @region
 			crew = App.request "new:crew:entity"
 			
 			@listenTo crew, "all", (e) -> console.info e

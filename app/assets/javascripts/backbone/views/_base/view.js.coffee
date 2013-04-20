@@ -4,11 +4,6 @@
 	
 	_.extend Marionette.View::,
 	
-		addOpacityWrapper: (init = true) ->
-			@$el.toggleWrapper
-				className: "opacity"
-			, init
-	
 		setInstancePropertiesFor: (args...) ->
 			for key, val of _.pick(@options, args...)
 				@[key] = val

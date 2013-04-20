@@ -10,6 +10,4 @@
 		template: "crew/edit/edit_crew"
 		
 		# form:
-		# 	buttons: false
-				# cancel: false
-				# placement: "left"
+		# 	footer: false

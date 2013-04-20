@@ -14,9 +14,7 @@
 				<label class="right inline">Name</label>
 	        </div>
 	        <div class="large-9 columns">
-				<div class="large-5">
-					<input type="text" name="name" value="<%= @name %>"  />
-				</div>
+				<input type="text" name="name" class="large-5" value="<%= @name %>"  />
 	        </div>
 		</div>
 		<div class="row">
@@ -24,9 +22,7 @@
 				<label class="right inline">Avatar</label>
 	        </div>
 	        <div class="large-9 columns">
-				<div class="large-5">
-					<input type="text" name="avatar"value="<%= @avatar %>"  />
-				</div>
+				<input type="text" name="avatar" class="large-5" value="<%= @avatar %>"  />
 	        </div>
 		</div>
 		<div class="row">

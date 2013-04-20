@@ -50,7 +50,7 @@
 	</div>
 </div>
 <div class="crew-delete">
-	<button class="button secondary tiny radius">
+	<button class="button alert tiny radius">
 		<i class="general-enclosed foundicon-remove"></i>
 		Delete
 	</button>

@@ -14,9 +14,9 @@
 			# false
 		
 		form:
-			# captureSubmitEvent: false
-			# addToCollection: false
-			# managePrimaryButton: false
+			captureSubmitEvent: false
+			addToCollection: false
+			managePrimaryButton: false
 			buttons:
 				# primary: "foo"
 				# cancel: ""

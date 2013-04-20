@@ -2,15 +2,14 @@
 	
 	class Form.Controller extends Marionette.Controller
 		
-		initialize: (contentView, options = {}) ->
-			@contentView = contentView
+		initialize: (view, options = {}) ->
+			@contentView = view
 			
 			@formLayout = @getFormLayout options
-			
+						
 			@listenTo @formLayout, "show", @formContentRegion			
 			@listenTo @formLayout, "close", @close
 			@listenTo @formLayout, "form:submit", @formSubmit
-			@listenTo @formLayout, "form:cancel", @formCancel
 		
 		formSubmit: ->
 			data = Backbone.Syphon.serialize(@formLayout)
@@ -24,15 +23,11 @@
 
 				@processFormSubmit data, entities
 		
-		formCancel: ->
-			console.log "formCancel"
-			@contentView.triggerMethod("form:cancel")			
-		
 		processFormSubmit: (data, entities) ->
 			model = entities.model
 			collection = entities.collection
-			model.save data, 
-				collection: collection
+			throw new Error "no model found inside of entities" unless model
+			model.save(data, collection: collection) if model
 		
 		onClose: ->
 			delete @formLayout
@@ -51,7 +46,6 @@
 			new Form.View
 				config: config
 				buttons: buttons
-				model: @contentView.model
 		
 		getDefaultOptions: (config = {}) ->
 			_.defaults config,
@@ -61,7 +55,6 @@
 		getButtons: (buttons = {}) ->
 			App.request("form:button:entities", buttons, @contentView.model) unless buttons is false	
 	
-	App.reqres.setHandler "form:wrapper", (contentView, options = {}) ->
-		throw new Error "no model found inside of form's contentView", contentView unless contentView.model
-		formController = new Form.Controller(contentView, options)
+	App.reqres.setHandler "form:wrapper", (view, options = {}) ->
+		formController = new Form.Controller(view, options)
 		formController.formLayout

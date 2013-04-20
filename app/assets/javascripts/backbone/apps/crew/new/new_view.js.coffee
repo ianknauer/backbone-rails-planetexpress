@@ -3,6 +3,5 @@
 	class New.Crew extends App.Views.ItemView
 		template: "crew/new/new_crew"
 		
-		form:
-			buttons:
-				placement: "left"
+		triggers:
+			"click [data-form-button='cancel']" : "form:cancel:button:clicked"

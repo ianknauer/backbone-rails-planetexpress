@@ -3,14 +3,9 @@
 	New.Controller =
 		
 		newCrew: ->
-			crew = App.request "new:crew:entity"
+			newView = @getNewView()
 			
-			crew.on "all", (e) -> console.info e
-			
-			newView = @getNewView crew
-			
-			App.request "form:wrapper", newView
-				
-		getNewView: (crew) ->
+			newView
+		
+		getNewView: ->
 			new New.Crew
-				model: crew

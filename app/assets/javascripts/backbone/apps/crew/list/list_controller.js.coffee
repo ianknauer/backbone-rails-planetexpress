@@ -32,7 +32,7 @@
 			region = @layout.newRegion
 			newView = App.request "new:crew:member:view"
 			
-			newView.on "form:cancel", =>
+			newView.on "form:cancel:button:clicked", =>
 				region.close()
 			
 			region.show newView

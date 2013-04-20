@@ -8,8 +8,7 @@
 			"data-type": @getFormDataType()
 			
 		triggers:
-			"submit" 														: "form:submit"
-			"click [data-form-button='cancel']" : "form:cancel"
+			"submit" : "form:submit"
 			
 		regions:
 			formContentRegion: "#form-content-region"
@@ -37,3 +36,10 @@
 		
 		buttonPlacement: ->
 			@ui.buttonContainer.addClass @buttons.placement
+		
+		# submit: (e) ->
+		# 	e.stopPropagation()
+		# 	e.preventDefault()
+		# 	@trigger "form:submit"
+			# Marionette.triggerMethod "form:submit"
+			

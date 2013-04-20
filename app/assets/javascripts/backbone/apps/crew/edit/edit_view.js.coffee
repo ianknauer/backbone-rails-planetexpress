@@ -10,14 +10,11 @@
 		template: "crew/edit/_edit_crew"
 		
 		# onFormSubmit: (data) ->
-			# console.log data
-			# false
+		# 	false
 		
-		form:
-			captureSubmitEvent: false
-			addToCollection: false
-			managePrimaryButton: false
-			buttons:
-				# primary: "foo"
-				# cancel: ""
-				placement: "left"
+		# form:
+			# captureSubmitEvent: false
+			# buttons:
+			# 	primary: "foo"
+			# 	cancel: false
+			# 	placement: "left"

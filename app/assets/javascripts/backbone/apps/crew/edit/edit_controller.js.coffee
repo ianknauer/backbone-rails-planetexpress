@@ -5,7 +5,7 @@
 		edit: (id, crew) ->
 			crew or= App.request "crew:entity", id
 			
-			crew.on "all", (e) -> console.info e
+			# crew.on "all", (e) -> console.info e
 			
 			App.execute "when:fetched", crew, =>
 				@layout = @getLayout crew

@@ -10,9 +10,4 @@ class CrewController < ApplicationController
 		# sleep 5
 		@member = Crew.find params[:id]
 	end
-	
-	def update
-		render "crew/show"
-		# render "crew/show", :status => 422
-	end
 end

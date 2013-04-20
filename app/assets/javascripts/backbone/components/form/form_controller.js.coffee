@@ -13,12 +13,8 @@
 		
 		formSubmit: ->
 			data = Backbone.Syphon.serialize(@formLayout)
-			
-			# console.info @contentView.triggerMethod "form:submit"
-			
-			# console.log data
 
-			if @contentView.triggerMethod("form:submit", data) isnt false
+			if @contentView.onFormSubmit?(data) isnt false
 				entities = _.pick @contentView, "model", "collection"
 
 				@processFormSubmit data, entities
@@ -26,8 +22,8 @@
 		processFormSubmit: (data, entities) ->
 			model = entities.model
 			collection = entities.collection
-			throw new Error "no model found inside of entities" unless model
-			model.save(data, collection: collection) if model
+			throw "no model found inside of entities" unless model
+			model.processUpdateOrCreate(data, collection) if model
 		
 		onClose: ->
 			delete @formLayout
@@ -54,7 +50,24 @@
 		
 		getButtons: (buttons = {}) ->
 			App.request("form:button:entities", buttons, @contentView.model) unless buttons is false	
+					
+	# API =
+	# 	getFormWrapper: (view, options) ->
+	# 		@formLayout = @getFormLayout view, options
+	# 		
+	# 		@formLayout.on "show", =>
+	# 			@formContentRegion view
+	# 		
+	# 		@formLayout
+	# 		
+	# 	formContentRegion: (view) ->
+	# 		@formLayout.formContentRegion.show view
+		
+		# getFormLayout: (view, options) ->
+		# 	new Form.View
 	
 	App.reqres.setHandler "form:wrapper", (view, options = {}) ->
+		## return view below here
+		# API.getFormWrapper(view, options)
 		formController = new Form.Controller(view, options)
 		formController.formLayout

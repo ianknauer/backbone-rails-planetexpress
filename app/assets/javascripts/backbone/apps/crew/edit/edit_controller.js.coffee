@@ -15,7 +15,10 @@
 		
 		formRegion: (crew) ->
 			editView = @getEditView crew
-			@layout.formRegion.show editView
+			
+			formView = App.request "form:wrapper", editView
+			
+			@layout.formRegion.show formView
 		
 		getLayoutView: (crew) ->
 			new Edit.Layout

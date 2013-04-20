@@ -1,7 +1,7 @@
 do (Marionette) ->
 	_.extend Marionette.Renderer,
 		
-		root: "backbone/apps/"
+		lookups: ["backbone/apps/", "backbone/components/"]
 		
 		render: (template, data) ->
 			path = @getTemplate(template)
@@ -10,4 +10,5 @@ do (Marionette) ->
 		
 		getTemplate: (template) ->
 			for path in [template, template.split("/").insertAt(-1, "templates").join("/")]
-				return JST[@root + path] if JST[@root + path]
+				for lookup in @lookups
+					return JST[lookup + path] if JST[lookup + path]

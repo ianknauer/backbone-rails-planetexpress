@@ -26,4 +26,5 @@
 				placement: "right"
 	
 	App.reqres.setHandler "form:button:entities", (buttons = {}, model) ->
+		console.log model
 		API.getFormButtons buttons, model

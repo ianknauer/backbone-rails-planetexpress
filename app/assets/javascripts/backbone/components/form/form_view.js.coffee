@@ -7,9 +7,6 @@
 		attributes: ->
 			"data-type": @getFormDataType()
 			
-		triggers:
-			"submit" : "form:submit"
-			
 		regions:
 			formContentRegion: "#form-content-region"
 		
@@ -36,10 +33,3 @@
 		
 		buttonPlacement: ->
 			@ui.buttonContainer.addClass @buttons.placement
-		
-		# submit: (e) ->
-		# 	e.stopPropagation()
-		# 	e.preventDefault()
-		# 	@trigger "form:submit"
-			# Marionette.triggerMethod "form:submit"
-			

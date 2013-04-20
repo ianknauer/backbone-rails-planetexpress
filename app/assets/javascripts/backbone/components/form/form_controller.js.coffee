@@ -3,39 +3,24 @@
 	class Form.Controller extends Marionette.Controller
 		
 		initialize: (view, options = {}) ->
-			@contentView = view
+			@formView = view
 			
 			@formLayout = @getFormLayout options
-						
+			
 			@listenTo @formLayout, "show", @formContentRegion			
 			@listenTo @formLayout, "close", @close
-			@listenTo @formLayout, "form:submit", @formSubmit
-		
-		formSubmit: ->
-			data = Backbone.Syphon.serialize(@formLayout)
-
-			if @contentView.onFormSubmit?(data) isnt false
-				entities = _.pick @contentView, "model", "collection"
-
-				@processFormSubmit data, entities
-		
-		processFormSubmit: (data, entities) ->
-			model = entities.model
-			collection = entities.collection
-			throw "no model found inside of entities" unless model
-			model.processUpdateOrCreate(data, collection) if model
 		
 		onClose: ->
 			delete @formLayout
-			delete @contentView
+			delete @formView
 			delete @options			
 			console.log "onClose", @
 		
 		formContentRegion: ->
-			@formLayout.formContentRegion.show @contentView
+			@formLayout.formContentRegion.show @formView
 		
 		getFormLayout: (options) ->
-			config = @getDefaultOptions _.result(@contentView, "form") 
+			config = @getDefaultOptions _.result(@formView, "form") 
 			
 			buttons = @getButtons config.buttons
 			
@@ -49,7 +34,7 @@
 				footer: true
 		
 		getButtons: (buttons = {}) ->
-			App.request("form:button:entities", buttons, @contentView.model) unless buttons is false	
+			App.request("form:button:entities", buttons, @formView.model) unless buttons is false	
 					
 	# API =
 	# 	getFormWrapper: (view, options) ->

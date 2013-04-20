@@ -20,24 +20,9 @@
 			@formLayout.formContentRegion.show @formView
 		
 		getFormLayout: (options) ->
-			config = @getDefaultOptions _.result(@formView, "form") 
 			new Form.View
-				config: config
-		
-		getDefaultOptions: (config = {}) ->
-			console.log config
-			
-			_.defaults config,
-				focusFirstInput: true
-				footer: true
-				buttons: @getButtonDefaults config.buttons
-		
-		getButtonDefaults: (buttons = {}) ->
-			_.defaults buttons,
-				primary: "Save"
-				cancel: "Cancel"
-				placement: "right"
-					
+				config: options
+	
 	# API =
 	# 	getFormWrapper: (view, options) ->
 	# 		@formLayout = @getFormLayout view, options

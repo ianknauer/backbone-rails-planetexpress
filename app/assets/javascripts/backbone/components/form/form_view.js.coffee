@@ -18,7 +18,9 @@
 			"click [data-form-button='cancel']"	: "form:cancel"
 		
 		modelEvents:
-			"change:_errors" : "changeErrors"
+			"change:_errors" 	: "changeErrors"
+			"sync:start"			:	"syncStart"
+			"sync:stop"				:	"syncStop"
 		
 		initialize: ->
 			@setInstancePropertiesFor "config", "buttons"
@@ -56,3 +58,9 @@
 			el = @$("[name='#{name}']")
 			sm = $("<small>").text(error)
 			el.after(sm).closest(".row").addClass("error")
+		
+		syncStart: (model) ->
+			@addOpacityWrapper() if @config.syncing
+		
+		syncStop: (model) ->
+			@addOpacityWrapper(false) if @config.syncing

@@ -22,9 +22,10 @@
 		template: "crew/list/_crew_member"
 		tagName: "li"
 		className: "crew-member"
-		
-		events:
-			"click" : -> @trigger "crew:member:clicked", @model
+			
+		triggers:
+			"click .crew-delete button" : "crew:delete:clicked"
+			"click" 										: "crew:member:clicked"
 	
 	class List.Empty extends App.Views.ItemView
 		template: "crew/list/_empty"

@@ -21,12 +21,15 @@
 
 			new Form.FormWrapper
 				config: config
+				model: @contentView.model
 		
 		getDefaultConfig: (config = {}) ->
 			_.defaults config,
 				footer: true
+				focusFirstInput: true
 	
 	App.reqres.setHandler "form:wrapper", (contentView, options = {}) ->
+		throw new Error "No model found inside of form's contentView" unless contentView.model
 		formController = new Form.Controller
 			view: contentView
 			config: options

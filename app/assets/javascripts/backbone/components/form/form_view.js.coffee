@@ -4,11 +4,21 @@
 		template: "form/form"
 		
 		tagName: "form"
-		attributes:
-			"data-type": "edit"
+		attributes: ->
+			"data-type": @getFormDataType()
 		
 		regions:
 			formContentRegion: "#form-content-region"
 		
 		serializeData: ->
 			footer: @options.config.footer
+		
+		onShow: ->
+			_.defer =>
+				@focusFirstInput() if @options.config.focusFirstInput
+		
+		focusFirstInput: ->
+			@$(":input:visible:enabled:first").focus()
+		
+		getFormDataType: ->
+			if @model.isNew() then "new" else "edit"

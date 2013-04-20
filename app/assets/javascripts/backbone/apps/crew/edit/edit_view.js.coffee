@@ -8,6 +8,6 @@
 	
 	class Edit.Crew extends App.Views.ItemView
 		template: "crew/edit/edit_crew"
-		# 
-		# form:
-		# 	footer: false
+		
+		form:
+			focusFirstInput: false

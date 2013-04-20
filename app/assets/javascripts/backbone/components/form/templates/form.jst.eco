@@ -4,7 +4,7 @@
 	<% if @footer: %>
 		<footer>
 			<% if @buttons: %>
-				<ul class="inline-list">
+				<ul class="inline-list <%= @buttonPlacement %>">
 					<% for button in @buttons: %>
 						<li>
 							<button data-form-button="<%= button.type %>" class="<%= button.className %>"><%= button.text %></button>

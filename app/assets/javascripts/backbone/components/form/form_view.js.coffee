@@ -4,32 +4,33 @@
 		template: "form/form"
 		
 		tagName: "form"
-		attributes: ->
-			"data-type": @getFormDataType()
+		attributes:
+			"data-type": "edit"
 			
 		regions:
 			formContentRegion: "#form-content-region"
 		
-		ui:
-			buttonContainer: "ul.inline-list"
-		
 		initialize: ->
-			@setInstancePropertiesFor "config", "buttons"
-		
-		getFormDataType: ->
-			if @model?.isNew() then "new" else "edit"
+			@config = @options.config
+			console.warn "config", @config
 		
 		serializeData: ->
-			footer: @config.footer
-			buttons: @buttons?.toJSON() ? false
+			footer: @options.config.footer
+			buttons: @getButtons(@options.config.buttons)
+			buttonPlacement: @options.config.buttons.placement
 		
 		onShow: ->
 			_.defer =>
 				@focusFirstInput() if @config.focusFirstInput
-				@buttonPlacement() if @buttons
 		
 		focusFirstInput: ->
 			@$(":input:visible:enabled:first").focus()
 		
-		buttonPlacement: ->
-			@ui.buttonContainer.addClass @buttons.placement
+		getButtons: (buttons) ->
+			return false unless buttons
+			array = [
+				{ type: "cancel", 	className: "button small secondary radius", text: buttons.cancel }
+				{ type: "primary", 	className: "button small radius", 					text: buttons.primary }
+			]
+			array.reverse() if buttons.placement is "left"
+			array

@@ -7,9 +7,6 @@
 			
 			crew.on "all", (e) -> console.info e
 			
-			crew.on "updated", ->
-				App.vent.trigger "crew:updated", crew
-			
 			App.execute "when:fetched", crew, =>
 				@layout = @getLayout crew
 				

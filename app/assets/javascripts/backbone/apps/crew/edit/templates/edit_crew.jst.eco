@@ -44,14 +44,13 @@
 				</div>
 	        </div>
 		</div>
-		<div class="row error">
+		<div class="row">
 			<div class="large-3 columns">
 				<label class="right inline">Species</label>
 	        </div>
 			<div class="large-9 columns">
 				<div class="large-5 left">
 					<input type="text" name="species" value="<%= @species %>" />
-					<small>error msg</small>
 				</div>
 				<div class="large-7 columns">
 					<h6 class="subheader hint">Ex: Human, Robot, Mutant</h6>

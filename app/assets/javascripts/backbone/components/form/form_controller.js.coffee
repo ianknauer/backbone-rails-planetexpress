@@ -7,8 +7,11 @@
 			
 			@formLayout = @getFormLayout options.config
 			
-			@formLayout.on "show", =>
-				@formContentRegion()
+			@listenTo @formLayout, "show", @formContentRegion
+			@listenTo @formLayout, "close", @close
+		
+		onClose: ->
+			console.log "onClose", @
 		
 		formContentRegion: ->
 			@formLayout.formContentRegion.show @contentView

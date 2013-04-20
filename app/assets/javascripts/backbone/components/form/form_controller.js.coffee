@@ -9,6 +9,22 @@
 			
 			@listenTo @formLayout, "show", @formContentRegion
 			@listenTo @formLayout, "close", @close
+			@listenTo @formLayout, "form:submit", @formSubmit
+			@listenTo @formLayout, "form:cancel", @formCancel
+		
+		formCancel: ->
+			@contentView.triggerMethod "form:cancel"
+		
+		formSubmit: ->
+			data = Backbone.Syphon.serialize @formLayout
+			if @contentView.triggerMethod("form:submit", data) isnt false
+				model = @contentView.model
+				collection = @contentView.collection
+				@processFormSubmit data, model, collection
+		
+		processFormSubmit: (data, model, collection) ->
+			model.save data,
+				collection: collection
 		
 		onClose: ->
 			console.log "onClose", @
@@ -31,6 +47,7 @@
 			_.defaults config,
 				footer: true
 				focusFirstInput: true
+				errors: true
 		
 		getButtons: (buttons = {}) ->
 			App.request("form:button:entities", buttons, @contentView.model) unless buttons is false

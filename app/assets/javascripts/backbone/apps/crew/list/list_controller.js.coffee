@@ -31,6 +31,27 @@
 		newRegion: ->			
 			App.execute "new:crew:member", @layout.newRegion			
 			
+			# addCrew = new App.Crew.AddCrew 
+			#   region: @layout.newRegion
+			# 
+			# this.listenTo addCrew, "crew:added" ->
+			# 	# do stuff
+			# 	
+			# addCrew.show()
+			# 	
+			# # App.Cr "crew:add", @layout.newRegion
+			# 
+			# region = @layout.newRegion
+			# newView = App.request "new:crew:member:view"
+			# 
+			# @listenTo newView, "form:cancel", ->
+			# 	region.close()
+			# 	
+			# 
+			# 
+			# # App.execute "region:show", newView, region
+			# region.show newView
+		
 		crewRegion: (crew) ->
 			crewView = @getCrewView crew
 			

@@ -9,5 +9,7 @@
 	class Edit.Crew extends App.Views.ItemView
 		template: "crew/edit/edit_crew"
 		
-		form:
-			focusFirstInput: false
+		# form:
+		# 	buttons: false
+				# cancel: false
+				# placement: "left"

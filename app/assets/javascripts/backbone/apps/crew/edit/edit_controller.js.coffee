@@ -8,23 +8,10 @@
 			# crew.on "all", (e) -> console.info e
 			
 			App.execute "when:fetched", crew, =>
-				@layout = @getLayout crew
-				
-				@layout.on "show", =>
-					@formRegion crew
-				
-				App.mainRegion.show @layout
-		
-		formRegion: (crew) ->
-			editView = @getEditView crew
-			formView = App.request "form:wrapper", editView
+				editView = @getEditView crew
 			
-			@layout.formRegion.show formView
+				App.mainRegion.show editView
 		
 		getEditView: (crew) ->
 			new Edit.Crew
-				model: crew
-		
-		getLayout: (crew) ->
-			new Edit.Layout
 				model: crew

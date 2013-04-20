@@ -7,7 +7,7 @@ class CrewController < ApplicationController
 	end
 	
 	def show
-		# sleep 5
+		sleep 5
 		@member = Crew.find params[:id]
 	end
 end

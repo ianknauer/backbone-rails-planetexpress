@@ -22,7 +22,7 @@
 		App.navigate Routes.edit_crew_path(member.id)
 		API.edit member.id, member
 	
-	App.vent.on "crew:updated crew:created crew:cancelled", (crew) ->
+	App.vent.on "crew:updated crew:created", (crew) ->
 		App.navigate Routes.crew_index_path()
 		API.list()
 	

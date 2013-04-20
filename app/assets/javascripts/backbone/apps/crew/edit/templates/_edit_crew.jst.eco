@@ -6,9 +6,7 @@
 				<label class="right inline">Age</label>
 	        </div>
 	        <div class="large-9 columns">
-				<div class="large-5">
-					<input type="text" name="age" class="large-2" value="<%= @age %>" />
-				</div>
+				<input type="text" name="age" class="large-1" value="<%= @age %>" />
 	        </div>
 		</div>
 		<div class="row">
@@ -44,13 +42,14 @@
 				</div>
 	        </div>
 		</div>
-		<div class="row">
+		<div class="row error">
 			<div class="large-3 columns">
 				<label class="right inline">Species</label>
 	        </div>
 			<div class="large-9 columns">
 				<div class="large-5 left">
 					<input type="text" name="species" value="<%= @species %>"  />
+					<small>error msg</small>
 				</div>
 				<div class="large-7 columns">
 					<h6 class="subheader hint">Ex: Human, Robot, Mutant</h6>

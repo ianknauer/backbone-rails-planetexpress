@@ -3,8 +3,7 @@
 	
 	API =
 		list: ->
-			new HeaderApp.List.Controller
-				region: App.headerRegion
+			HeaderApp.List.Controller.list()
 	
 	HeaderApp.on "start", ->
 		API.list()
